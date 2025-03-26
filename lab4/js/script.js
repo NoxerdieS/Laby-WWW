@@ -29,9 +29,9 @@ function deleteAllTechnology() {
 
 function exchangeCurrency() {
   if (currency.value == "dollars") {
-    result.innerHTML = `${Math.round(parseFloat(sum.value) * 3.85 * 100) / 100}`;
+    result.innerHTML = `${Math.round(parseFloat(sum.value) * 3.85 * 100) / 100} $`;
   } else if (currency.value == "euro") {
-    result.innerHTML = `${Math.round(parseFloat(sum.value) * 4.17 * 100) / 100}`;
+    result.innerHTML = `${Math.round(parseFloat(sum.value) * 4.17 * 100) / 100} €`;
   }
 }
 

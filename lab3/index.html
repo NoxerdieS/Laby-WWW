@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strona Główna - Interaktywne Przykłady</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__items">
+      <a href="index.html" class="nav__item">home</a>
+      <a href="gallery.html" class="nav__item">galeria</a>
+      <a href="calculator.html" class="nav__item">kalkulator</a>
+    </div>
+  </nav>
+  <main>
+    <h1>Interaktywne Przykłady JavaScript</h1>
+    <section>
+      <h2>Zmiana zawartości elementu</h2>
+      <p id="demo1">Początkowa zawartość tekstowa.</p>
+      <button onclick="changeContent()">Zmień zawartość</button>
+    </section>
+    <section>
+      <h2>Zmiana wartości atrybutu</h2>
+      <img id="demo2" src="./img/obrazek1.jpg" alt="Obrazek początkowy" width="300">
+      <button onclick="changeAttribute()">Zmień obrazek</button>
+    </section>
+    <section>
+      <h2>Zmiana stylu elementu</h2>
+      <p id="demo3" style="font-size: 20px;">Tekst z domyślnym stylem.</p>
+      <button onclick="changeStyle()">Zmień styl</button>
+    </section>
+    <section>
+      <h2>Pokazywanie i ukrywanie elementu</h2>
+      <p id="demo4">Tekst, który można ukryć lub pokazać.</p>
+      <button onclick="toggleVisibility()">Pokaż/Ukryj tekst</button>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
