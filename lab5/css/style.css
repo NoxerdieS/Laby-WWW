@@ -34,9 +34,6 @@
 	text-align: center;
   }
   
-  tbody tr:nth-child(even) {
-	background-color: #1e1e1e;
-  }
   
   .personForm {
 	background-color: #1e1e1e;
@@ -130,22 +127,22 @@
   }
   
   .rodzina {
-	background-color: #0d47a1;
+	background-color: #1466e2;
 	color: #ffffff;
   }
   
   .przyjaciele {
-	background-color: #1565c0;
+	background-color: #1158a8;
 	color: #ffffff;
   }
   
   .praca {
-	background-color: #1976d2;
+	background-color: #0e3c69;
 	color: #ffffff;
   }
   
   .znajomi {
-	background-color: #1e88e5;
+	background-color: #0b2c49;
 	color: #ffffff;
   }
   
@@ -154,31 +151,34 @@
 	width: 500px;
 	height: 200px;
 	margin: 0 auto;
-	background-color: #1e1e1e;
   }
-
+  
   .dog-animation img {
 	position: absolute;
-	/* left: 0; */
+	left: 0;
 	width: 200px;
-	
   }
+  
 
   .dog-animation hr {
 	position: absolute;
-	/* bottom: 20px; */
+	width: 100%;
+	bottom: 20px;
 	border-color: #00aaff;
   }
 
-  .animation{
-	animation: dog-walk 1s ease-in;
-  }
-
   @keyframes dog-walk {
-	from {
-		left: 0;
+	0% {
+	  left: 0;
 	}
-	to {
-		right: 0;
+	50% {
+	  left: 300px;  
 	}
+	100% {
+	  left: 0;      
+	}
+  }
+  
+  .animate {
+	animation: dog-walk 2s ease-in-out forwards;
   }

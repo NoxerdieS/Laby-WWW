@@ -15,12 +15,11 @@ function addContact() {
   const gender = document.getElementById("gender").value;
   const group = document.getElementById("group").value;
   
-  // if (!name || !lastname) {
-  //   alert("Imię oraz nazwisko są wymagane!");
-  //   return;
-  // }
+  if (!name || !lastname) {
+    alert("Imię oraz nazwisko są wymagane!");
+    return;
+  }
 
-  
   const tbody = document.querySelector("table tbody");
   const tr = document.createElement("tr");
 
@@ -69,9 +68,7 @@ function addContact() {
   document.getElementById("gender").selectedIndex = 0;
   document.getElementById("group").selectedIndex = 0;
   
-  if(dog.className == 'animation'){
-    dog.className == '';
-  } else {
-    dog.className == 'animation';
-  }
+  dog.classList.remove("animate");
+  void dog.offsetWidth;
+  dog.classList.add("animate");
 }
