@@ -1,0 +1,184 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+  
+  body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #121212;
+	color: #ffffff;
+	padding: 20px;
+  }
+  
+  table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	background-color: #1e1e1e;
+  }
+  
+  thead {
+	background-color: #1a1a1a;
+	color: #ffffff;
+  }
+  
+  thead th {
+	padding: 15px;
+	border-bottom: 2px solid #00aaff;
+  }
+  
+  tbody td {
+	padding: 12px;
+	border-bottom: 1px solid #333;
+	text-align: center;
+  }
+  
+  tbody tr:nth-child(even) {
+	background-color: #1e1e1e;
+  }
+  
+  .personForm {
+	background-color: #1e1e1e;
+	padding: 20px;
+	border-radius: 8px;
+	max-width: 400px;
+	margin: auto;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  .personForm label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #ffffff;
+  }
+  
+  .personForm input,
+  .personForm select {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #333;
+	border-radius: 4px;
+	font-size: 14px;
+	background-color: #2e2e2e;
+	color: #ffffff;
+  }
+  
+  button {
+	background-color: #1a1a1a;
+	color: #00aaff;
+	border: none;
+	padding: 12px 20px;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: 0 4px #000;
+	transition: transform 0.1s, box-shadow 0.1s;
+  }
+  
+  button:hover {
+	opacity: 0.9;
+  }
+  
+  button:active {
+	box-shadow: 0 2px #000;
+	transform: translateY(2px);
+  }
+  
+  .tooltip {
+	position: relative;
+  }
+  
+  .tooltip::before {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #1a1a1a;
+	color: #00aaff;
+	padding: 8px 10px;
+	border-radius: 4px;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease-in-out;
+	margin-bottom: 8px;
+	font-size: 14px;
+  }
+  
+  .tooltip::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-width: 6px;
+	border-style: solid;
+	border-color: transparent transparent #1a1a1a transparent;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease-in-out;
+  }
+  
+  .tooltip:hover::before,
+  .tooltip:hover::after {
+	opacity: 1;
+	visibility: visible;
+  }
+  
+  .rodzina {
+	background-color: #0d47a1;
+	color: #ffffff;
+  }
+  
+  .przyjaciele {
+	background-color: #1565c0;
+	color: #ffffff;
+  }
+  
+  .praca {
+	background-color: #1976d2;
+	color: #ffffff;
+  }
+  
+  .znajomi {
+	background-color: #1e88e5;
+	color: #ffffff;
+  }
+  
+  .dog-animation {
+	position: relative;
+	width: 500px;
+	height: 200px;
+	margin: 0 auto;
+	background-color: #1e1e1e;
+  }
+
+  .dog-animation img {
+	position: absolute;
+	/* left: 0; */
+	width: 200px;
+	
+  }
+
+  .dog-animation hr {
+	position: absolute;
+	/* bottom: 20px; */
+	border-color: #00aaff;
+  }
+
+  .animation{
+	animation: dog-walk 1s ease-in;
+  }
+
+  @keyframes dog-walk {
+	from {
+		left: 0;
+	}
+	to {
+		right: 0;
+	}
+  }

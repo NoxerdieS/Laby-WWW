@@ -6,7 +6,7 @@ const deleteLastTechnology = document.querySelector("#deleteLastTechnology");
 const deleteAllTechnologyBtn = document.querySelector("#deleteAllTechnology");
 const sum = document.querySelector("#sumInput");
 const currency = document.querySelector(".currency-select");
-const result = document.querySelector(".result");
+const result = document.querySelector(".result"); 
 
 function addTechnology() {
   const element = document.createElement("li");
