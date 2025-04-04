@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+  
+  body {
+	font-family: 'Roboto', sans-serif;
+	background-color: #121212;
+	color: #ffffff;
+	padding: 20px;
+  }
+
+.style-one {
+    color: darkgreen;
+    border: 2px solid darkgreen;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f0fff0;
+}
+
+.style-two {
+    color: darkred;
+    background-color: #fff0f0;
+    font-style: italic;
+    padding: 10px;
+}
+
