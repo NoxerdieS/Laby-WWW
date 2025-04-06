@@ -1,52 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Strona jQuery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h1 id="header">Witaj na stronie!</h1>
+
+    <!-- Zadanie 2 -->
+    <h1 class="main-header" id="header">Witaj na stronie!</h1>
     <hr>
-    <button id="showHideBtn">Pokaż/Ukryj</button>
-    <div id="listElement">
-        <ol>
-            <li>Jajka</li>
-            <li>Babka</li>
-            <li>Jajco</li>
-        </ol>
+
+    <!-- Zadanie 4 -->
+    <div class="color-section">
+        <p class="holiday-text">Spacer z rodziną po obiedzie.</p>
+        <p class="holiday-text">Oglądanie świątecznych filmów.</p>
+        <p class="holiday-text">Granie w planszówki wieczorem.</p>
+
+        <label for="color-select">Wybierz kolor:</label>
+        <select class="color-select" id="color-select">
+            <option value="red">Czerwony</option>
+            <option value="green">Zielony</option>
+            <option value="blue">Niebieski</option>
+            <option value="purple">Fioletowy</option>
+            <option value="orange">Pomarańczowy</option>
+        </select>
+
+        <button class="btn-text-color" id="text-color-btn">Zmień kolor tekstu</button>
+        <button class="btn-bg-color" id="background-color-btn">Zmień kolor tła</button>
     </div>
-    <hr>
-    <p class="holiday-text">Going for a walk with the family.</p>
-    <p class="holiday-text">Watching holiday movies.</p>
-    <p class="holiday-text">Playing board games in the evening.</p>
-
-    <label for="color-select">Choose a color:</label>
-    <select id="color-select">
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="purple">Purple</option>
-        <option value="orange">Orange</option>
-    </select>
-
-    <br><br>
-
-    <button id="text-color-btn">Zmień kolor tekstu</button>
-    <button id="background-color-btn">Zmień kolor tła</button>
 
     <hr>
-    <p id="greeting" class="style-one">
-        Wesołych Świąt!
-    </p>
-    
-    <button id="apply-style-one">Styl 1</button>
-    <button id="apply-style-two">Styl 2</button>
-    
+
+    <!-- Zadanie 5 -->
+    <p class="holiday-greeting style-one" id="greeting">Wesołych, spokojnych i radosnych Świąt!</p>
+    <button class="btn-style-one" id="apply-style-one">Zastosuj styl 1</button>
+    <button class="btn-style-two" id="apply-style-two">Zastosuj styl 2</button>
+
     <hr>
-    
-    <script src="./js/script.js"></script>
+
+    <!-- Zadanie 6 -->
+    <input type="text" class="input-text" id="text-input" placeholder="Wpisz wiadomość i naciśnij Enter">
+    <p class="text-output" id="output-paragraph"></p>
+
+    <hr>
+
+    <!-- Zadanie 7 -->
+    <h3 class="gallery-title">Mini galeria świąteczna</h3>
+    <img class="main-image" id="main-image" src="img/gallery1.jpg" alt="Główne zdjęcie" width="400" height="300">
+    <div class="thumbnail-container" id="thumbnail-container">
+        <img src="img/gallery2.jpg" alt="Miniatura 1" width="100" height="75">
+        <img src="img/gallery3.jpg" alt="Miniatura 2" width="100" height="75">
+        <img src="img/gallery4.jpg" alt="Miniatura 3" width="100" height="75">
+    </div>
+
+    <hr>
+
+    <!-- Zadanie 8 -->
+    <h3 class="todo-title">Rzeczy do zrobienia przed świętami:</h3>
+    <ul class="todo-list" id="todo-list"></ul>
+    <input type="text" class="task-input" id="task-input" placeholder="Dodaj nowe zadanie">
+    <button class="btn-add-task" id="add-task-btn">Dodaj</button>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
