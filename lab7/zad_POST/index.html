@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Welcome Form</title>
+</head>
+<body>
+  <h1>Formularz</h1>
+  <form action="welcome.php" method="POST">
+    <label>Imię: <input type="text" name="firstName" required></label><br><br>
+    <label>Nazwisko: <input type="text" name="lastName" required></label><br><br>
+    <label>Ulubiony kolor: 
+        <select name="color">
+            <option value="red">Czerwony</option>
+            <option value="green">Zielony</option>
+            <option value="blue">Niebieski</option>
+          </select>
+    </label><br><br>
+    <button type="submit">Wyślij</button>
+  </form>
+</body>
+</html>
