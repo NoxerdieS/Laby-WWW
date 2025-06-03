@@ -81,6 +81,16 @@ CREATE TABLE `recenzje` (
   `data` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
+CREATE TABLE `uzytkownicy` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(50) NOT NULL,
+  `haslo` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `rola` VARCHAR(50) NOT NULL DEFAULT 'user',
+  `data` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
 --
 -- Dumping data for table `recenzje`
 --

@@ -1,5 +1,11 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "dzbanyv2db");
+require("session.php");
+require("db.php");
+
+if (!isset($_SESSION['login'])) {
+    header("Location: login.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -11,15 +17,22 @@ $conn = new mysqli("localhost", "root", "", "dzbanyv2db");
 <body>
 <div class="container">
     <header>
+        <div class="user-info">
+            Witaj, <strong><?= htmlspecialchars($_SESSION['login']) ?></strong> |
+            <a href="myReviews.php">Moje recenzje</a> |
+            <a href="logout.php">Wyloguj</a>
+        </div>
         <h1>Moje Dzbanki</h1>
         <nav class="menu">
             <a href="index.php">Wszystkie</a>
             <?php
-            $sql = "SELECT id, nazwa FROM kategorie";
-            $result = $conn->query($sql);
-            while($row = $result->fetch_object()) {
-                echo "<a href='index.php?idKat={$row->id}'>{$row->nazwa}</a>";
+            $stmt = $conn->prepare("SELECT id, nazwa FROM kategorie");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_object()) {
+                echo "<a href='index.php?idKat=" . (int)$row->id . "'>" . htmlspecialchars($row->nazwa) . "</a>";
             }
+            $stmt->close();
             ?>
         </nav>
     </header>
@@ -43,13 +56,13 @@ $conn = new mysqli("localhost", "root", "", "dzbanyv2db");
         }
 
         $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
+        if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_object()) {
                 echo "
                 <div class='dzban'>
-                    <img src='obrazki/{$row->obrazek}' alt=''>
+                    <img src='obrazki/" . htmlspecialchars($row->obrazek) . "' alt=''>
                     <div class='dzban-info'>
-                        <h3><a href='details.php?id={$row->id}'>{$row->nazwa}</a></h3>
+                        <h3><a href='details.php?id=" . (int)$row->id . "'>" . htmlspecialchars($row->nazwa) . "</a></h3>
                     </div>
                 </div>";
             }
