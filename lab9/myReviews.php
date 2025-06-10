@@ -1,6 +1,5 @@
 <?php
-require("session.php");
-require("db.php");
+
 
 if (!isset($_SESSION['login'])) {
     header("Location: login.php");
@@ -29,14 +28,7 @@ $result = $stmt->get_result();
 </head>
 <body>
 <div class="container">
-    <header>
-        <div class="user-info">
-            Witaj, <strong><?= htmlspecialchars($login) ?></strong> |
-            <a href="index.php">Strona główna</a> |
-            <a href="logout.php">Wyloguj</a>
-        </div>
-        <h1>Moje recenzje</h1>
-    </header>
+    <?php require("menu.php")?>
     <?php if ($result->num_rows === 0): ?>
         <p>Nie dodałeś jeszcze żadnej recenzji.</p>
     <?php else: ?>

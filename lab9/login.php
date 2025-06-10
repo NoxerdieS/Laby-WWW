@@ -7,32 +7,27 @@ if (isset($_SESSION['login'])) {
     exit;
 }
 
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = $_POST['login'];
     $haslo = $_POST['haslo'];
 
-    $stmt = $conn->prepare("SELECT haslo FROM uzytkownicy WHERE login = ?");
+    $stmt = $conn->prepare("SELECT id, haslo FROM uzytkownicy WHERE login = ?");
     $stmt->bind_param("s", $login);
     $stmt->execute();
-    $stmt->bind_result($hashed);
+    $stmt->bind_result($userId, $hashed);
     if ($stmt->fetch() && $hashed === md5($haslo)) {
         $_SESSION['login'] = $login;
+        $_SESSION['id']    = $userId;
         header("Location: index.php");
         exit;
     } else {
-        echo "        <head>
-            <meta charset='UTF-8'>
-            <title>Rejestracja</title>
-            <link rel='stylesheet' href='style.css'>
-        </head>
-        <div class='form' style='margin-top: 50px;'>
-                <h3>Nieprawidłowy login lub hasło.</h3><br/>
-                <p class='link'>Ponów próbę <a href='login.php'>logowania</a>.</p>
-              </div>";
+        $error = 'Nieprawidłowy login lub hasło.';
     }
     $stmt->close();
     $conn->close();
-} else {
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -44,6 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <form class="form" method="post" action="login.php">
         <h1 class="login-title">Logowanie</h1>
+        <?php if ($error): ?>
+            <div class="form-error" style="margin-bottom:15px; color:#ff6b6b; text-align:center;">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
         <input type="text" class="login-input" name="login" placeholder="Login" required autofocus />
         <input type="password" class="login-input" name="haslo" placeholder="Hasło" required />
         <input type="submit" value="Zaloguj" class="login-button" />
@@ -51,5 +51,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 </body>
 </html>
-<?php
-}

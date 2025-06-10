@@ -1,12 +1,4 @@
-<?php
-require("session.php");
-require("db.php");
 
-if (!isset($_SESSION['login'])) {
-    header("Location: login.php");
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -17,28 +9,12 @@ if (!isset($_SESSION['login'])) {
 <body>
 <div class="container">
     <header>
-        <div class="user-info">
-            Witaj, <strong><?= htmlspecialchars($_SESSION['login']) ?></strong> |
-            <a href="myReviews.php">Moje recenzje</a> |
-            <a href="logout.php">Wyloguj</a>
-        </div>
+        <?php include "menu.php"; ?>
         <h1>Moje Dzbanki</h1>
-        <nav class="menu">
-            <a href="index.php">Wszystkie</a>
-            <?php
-            $stmt = $conn->prepare("SELECT id, nazwa FROM kategorie");
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($row = $result->fetch_object()) {
-                echo "<a href='index.php?idKat=" . (int)$row->id . "'>" . htmlspecialchars($row->nazwa) . "</a>";
-            }
-            $stmt->close();
-            ?>
-        </nav>
     </header>
 
-    <form>
-        <input type="text" name="fraza" placeholder="Szukaj dzbana...">
+    <form class="search-form" method="get" action="index.php">
+        <input type="text" name="fraza" placeholder="Szukaj dzbana..." value="<?= isset($_GET['fraza']) ? htmlspecialchars($_GET['fraza']) : '' ?>">
         <input type="submit" value="Wyszukaj">
     </form>
 
@@ -46,32 +22,40 @@ if (!isset($_SESSION['login'])) {
 
     <div class="tabela-dzbanow">
         <?php
-        $sql = "SELECT id, nazwa, obrazek FROM dzbany";
         if (isset($_GET["idKat"])) {
             $idKat = (int)$_GET["idKat"];
-            $sql .= " WHERE idKategorii = $idKat";
-        } elseif (isset($_GET["fraza"])) {
-            $fraza = $conn->real_escape_string($_GET["fraza"]);
-            $sql .= " WHERE nazwa LIKE '%$fraza%'";
+            $stmt = $conn->prepare("SELECT id, nazwa, obrazek FROM dzbany WHERE idKategorii = ?");
+            $stmt->bind_param("i", $idKat);
+        } elseif (!empty($_GET["fraza"])) {
+            $fraza = "%{$_GET['fraza']}%";
+            $stmt = $conn->prepare("SELECT id, nazwa, obrazek FROM dzbany WHERE nazwa LIKE ?");
+            $stmt->bind_param("s", $fraza);
+        } else {
+            $stmt = $conn->prepare("SELECT id, nazwa, obrazek FROM dzbany");
         }
 
-        $result = $conn->query($sql);
-        if ($result && $result->num_rows > 0) {
-            while ($row = $result->fetch_object()) {
-                echo "
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_object()):
+        ?>
                 <div class='dzban'>
-                    <img src='obrazki/" . htmlspecialchars($row->obrazek) . "' alt=''>
+                    <img src='obrazki/<?= htmlspecialchars($row->obrazek) ?>' alt=''>
                     <div class='dzban-info'>
-                        <h3><a href='details.php?id=" . (int)$row->id . "'>" . htmlspecialchars($row->nazwa) . "</a></h3>
+                        <h3><a href='details.php?id=<?= (int)$row->id ?>'><?= htmlspecialchars($row->nazwa) ?></a></h3>
                     </div>
-                </div>";
-            }
+                </div>
+        <?php
+            endwhile;
         } else {
             echo "<p>Brak wyników.</p>";
         }
+        $stmt->close();
         $conn->close();
         ?>
     </div>
+    <?php include 'footer.php'; ?>
 </div>
 </body>
 </html>
